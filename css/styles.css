@@ -1,0 +1,292 @@
+/* ---- Base Rules ---- */
+:root {
+  scroll-behavior: smooth;
+}
+body {
+  background: linear-gradient(
+      0deg,
+      rgba(136, 203, 171, 1) 0%,
+      rgba(0, 13, 60, 1) 100%
+    )
+    rgb(136, 203, 171);
+  margin: 0;
+  font-family: "Merriweather", serif;
+  color: #fff;
+}
+/* responsive and media queries */
+.container {
+  margin: 0 auto;
+}
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* Typeography General*/
+h1 {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 3em;
+  margin: 2em 1rem;
+}
+
+@media only screen and (min-width: 35em) {
+  h1 {
+    font-size: 7em;
+    margin: 2em 4rem 1em;
+  }
+}
+
+h2 {
+  border-bottom: 1px solid #cc1;
+  font-family: "Oxygen", Sans-Serif;
+  font-size: 3em;
+  color: #fff;
+}
+
+p {
+  line-height: 1.6em;
+  color: #eee;
+}
+
+/* ---- Layout Rules ---- */
+main {
+  margin: 5vh 1em 5vh 1em;
+}
+
+.main-hero {
+  padding-top: 3em;
+}
+
+section {
+  position: relative;
+  min-height: 40vh;
+  margin-bottom: 100px;
+  scroll-margin-top: 100px;
+}
+
+/* ---- Module Rules ---- */
+
+/* Navigation Styles*/
+.navbar__menu ul {
+  padding-left: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.navbar__menu li {
+  display: inline-block ;
+}
+
+.navbar__menu .menu__link {
+  display: inline-block;
+  padding: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+}
+
+.navbar__menu .menu__link:hover {
+  background: #333;
+  color: #fff;
+  transition: ease 0.3s all;
+}
+
+.navbar__menu .menu__link.active {
+  background: #333;
+  color: #fff;
+  transition: ease 0.3s all;
+}
+
+/* Header Styles */
+.page__header {
+  background: #fff;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+  overflow: hidden;
+  transition: 100ms;
+  transform-origin: center top;
+}
+
+/* Footer Styles */
+.page__footer {
+  background: #000;
+  padding: 3em;
+  color: #fff;
+}
+
+.page__footer p {
+  color: #fff;
+}
+
+/* ---- Theme Rules ---- */
+/* Landing Container Styles */
+.landing__container {
+  padding: 1em;
+  text-align: left;
+}
+
+@media only screen and (min-width: 35em) {
+  .landing__container {
+    max-width: 50em;
+    padding: 4em;
+  }
+}
+
+section:nth-of-type(even) .landing__container {
+  margin-right: 0;
+  margin-left: auto;
+  text-align: right;
+}
+
+/* Background Circles */
+section:nth-of-type(odd) .landing__container::before {
+  position: absolute;
+  content: "";
+  background: rgba(255, 255, 255, 0.187);
+  z-index: -5;
+  padding: 10vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease 0.5s all;
+}
+
+section:nth-of-type(even) .landing__container::before {
+  position: absolute;
+  content: "";
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  inset: 3em 3em auto auto;
+  z-index: -5;
+  padding: 5vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n) .landing__container::after {
+  position: absolute;
+  content: "";
+  background: #fff;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  inset: auto 0 0 auto;
+  z-index: -5;
+  padding: 5vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n + 1) .landing__container::after {
+  position: absolute;
+  content: "";
+  background: #fff;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  inset: auto 20vw -5em auto;
+  z-index: -5;
+  padding: 7.5vh;
+  border-radius: 50%;
+  opacity: 0;
+  transition: ease 0.5s all;
+}
+
+/* ---- Theme State Rules ---- */
+/* Section Active Styles */
+section.section__activated {
+  background: #000;
+  background: linear-gradient(0deg, #0002 0%, #0000 100%);
+  border-radius: 10px;
+  box-shadow: #fff7 0px 2px 4px 0px, #fff9 0px 2px 16px 0px;
+}
+
+section.section__activated .landing__container::before {
+  opacity: 1;
+  animation: rotate 4s linear infinite forwards;
+}
+
+section.section__activated .landing__container::after {
+  opacity: 1;
+  animation: rotate 5s linear infinite forwards reverse;
+}
+
+/* Section Active Styles Keyframe Animations */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg) translate(-1em) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translate(-1em) rotate(-360deg);
+  }
+}
+
+/* styling the to top button  */
+.to__top__btn {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  background: #4a4;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  padding: 0.25em 0.5em;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.to__top__btn:hover {
+  opacity: 0.8;
+}
+
+/* styling the add section button */
+.add__section__btn {
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  background: #4a4;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  padding: 0.25em 0.5em;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  transition: 0.5s;
+  cursor: pointer;
+}
+.add__section__btn:hover {
+  opacity: 0.8;
+}
