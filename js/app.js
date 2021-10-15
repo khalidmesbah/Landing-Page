@@ -1,40 +1,10 @@
-// -------------Define Global Variables-------------
+// Define Global Variables
 const ul = document.getElementById("navbar__list");
 let sections = document.querySelectorAll("section");
 const pageHeader = document.querySelector(".page__header");
-// -------------End Global Variables-------------
 
-// -------------Start Helper Functions-------------
-// make the link active
-function linkActiveState() {
-  let i = 0;
-  // Scroll to section on link click
-  document.querySelectorAll("li  a").forEach((a) => {
-    sections[i++].classList.contains("section__activated")
-      ? a.classList.add("active")
-      : a.classList.remove("active");
-  });
-}
-
-//  Add class 'section__activated' to section when near top of viewport
-const observer = new IntersectionObserver(
-  (sections) => {
-    sections.forEach((section) => {
-      section.target.classList.remove("section__activated");
-      if (section.isIntersecting) {
-        section.target.classList.add("section__activated");
-        linkActiveState();
-      }
-    });
-  },
-  {
-    rootMargin: "-100px 0px",
-    threshold: 0.55,
-  }
-);
-
-// define the add section to NavBar function
-function addSectionToNavBar(counter) {
+// add an anchor to the section function
+function addAnchorToSection(counter) {
   ul.insertAdjacentHTML(
     "beforeend",
     `<li>
@@ -43,26 +13,18 @@ function addSectionToNavBar(counter) {
   );
 }
 
-// define the add observer
-function addObserver() {
-  sections.forEach((section) => observer.observe(section));
+// add anchor for the defined sections
+for (let i = 1; i <= sections.length; i++) {
+  addAnchorToSection(i);
 }
 
-// hide the navbar
-function hideNavBar() {
-  pageHeader.style.transform = "scaleY(0)";
-}
+// make the first anchor active for the first section
+document.querySelector("li a").classList.add("active");
 
-// show the navbar
-function showNavBar() {
-  pageHeader.style.transform = "scaleY(1)";
-}
-// -------------End Helper Functions-------------
-
-//  -------------Begin Main Functions-------------
-// build the create section function
+// create section function
 counter = 4;
 function createSection() {
+  // add a new section
   document.querySelector("main .container").insertAdjacentHTML(
     "beforeend",
     `<section id="section${++counter}" data-nav="section ${counter}">
@@ -90,29 +52,64 @@ function createSection() {
       </p>
     </div>`
   );
+
+  // update the sections
   sections = document.querySelectorAll("section");
-  // add a link to the section to the navbar
-  addSectionToNavBar(counter);
-  // add an obserever to the section
-  addObserver();
+
+  // add an anchor to the section in the navBar
+  addAnchorToSection(counter);
 }
 
-// defince the add section button
+// add a new section button
 document
   .querySelector(".add__section__btn")
   .addEventListener("click", () => createSection());
 
-// program the to-top button
+// hide the navbar whlie not scrolling & while scrolling down
+let preScroll = window.scrollY,
+  timer = "";
+
+window.addEventListener("scroll", () => {
+  // stop the timer
+  clearTimeout(timer);
+
+  // show the navBar onscroll
+  pageHeader.style.transform = "scaleY(1)";
+  preScroll = window.scrollY;
+
+  // hide the navBar after 1s if no scrolling is happening
+  timer = setTimeout(() => (pageHeader.style.transform = "scaleY(0)"), 1000);
+
+  //  activate the section in viewport and activate its anchor
+  sections.forEach((section) => {
+    let top = section.getBoundingClientRect().top;
+    if (top < 250 && top >= -250) {
+      section.classList.add("section__activated");
+      document
+        .querySelector(`[href = "#${section.id}"]`)
+        .classList.add("active");
+    } else {
+      section.classList.remove("section__activated");
+      document
+        .querySelector(`[href = "#${section.id}"]`)
+        .classList.remove("active");
+    }
+  });
+});
+
+// to-top button
 const toTopBtn = document.querySelector(".to__top__btn");
 window.onscroll = () => {
   if (window.scrollY >= 700) {
+    // show the button if scrolly is bigger than 700
     toTopBtn.style.display = "block";
   } else {
+    // hide the button if scrolly is less than 700
     toTopBtn.style.display = "none";
   }
 };
 
-// define the Scroll to top function
+// Scroll to top function
 toTopBtn.onclick = function () {
   window.scrollTo({
     left: 0,
@@ -120,22 +117,3 @@ toTopBtn.onclick = function () {
     behavior: "smooth",
   });
 };
-
-// hide the navbar whlie not scrolling & while scrolling down
-let preScroll = window.scrollY,
-  timer = "";
-window.addEventListener("scroll", () => {
-  clearTimeout(timer);
-  showNavBar();
-  preScroll = window.scrollY;
-  timer = setTimeout(() => hideNavBar(), 1000);
-});
-
-//  -------------End Main Functions-------------
-
-// build the nav
-for (let i = 1; i <= sections.length; i++) {
-  addSectionToNavBar(i);
-}
-// run the observer for the defined sections
-addObserver();
