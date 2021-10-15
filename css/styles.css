@@ -73,7 +73,6 @@ main {
 
 section {
   position: relative;
-  min-height: 40vh;
   margin-bottom: 100px;
   scroll-margin-top: 100px;
 }
@@ -84,11 +83,11 @@ section {
 .navbar__menu ul {
   padding-left: 0;
   margin: 0;
-  text-align: center;
+  text-align: right;
 }
 
 .navbar__menu li {
-  display: inline-block ;
+  display: inline-block;
 }
 
 .navbar__menu .menu__link {
@@ -252,7 +251,6 @@ section.section__activated .landing__container::after {
   position: fixed;
   right: 10px;
   bottom: 10px;
-  background: #4a4;
   display: flex;
   justify-content: center;
   font-size: 18px;
@@ -261,12 +259,15 @@ section.section__activated .landing__container::after {
   padding: 0.25em 0.5em;
   border-radius: 5px;
   border: none;
-  color: #fff;
   transition: 0.5s;
   cursor: pointer;
+  background: #fff;
+  color: #333;
 }
 .to__top__btn:hover {
-  opacity: 0.8;
+  background: #333;
+  color: #fff;
+  transition: ease 0.3s all;
 }
 
 /* styling the add section button */
@@ -274,7 +275,6 @@ section.section__activated .landing__container::after {
   position: fixed;
   left: 10px;
   bottom: 10px;
-  background: #4a4;
   display: flex;
   justify-content: center;
   font-size: 18px;
@@ -283,10 +283,13 @@ section.section__activated .landing__container::after {
   padding: 0.25em 0.5em;
   border-radius: 5px;
   border: none;
-  color: #fff;
   transition: 0.5s;
   cursor: pointer;
+  background: #fff;
+  color: #333;
 }
 .add__section__btn:hover {
-  opacity: 0.8;
+  background: #333;
+  color: #fff;
+  transition: ease 0.3s all;
 }
