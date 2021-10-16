@@ -1,11 +1,11 @@
 // Define Global Variables
-const ul = document.getElementById("navbar__list");
+const UL = document.getElementById("navbar__list");
 let sections = document.querySelectorAll("section");
-const pageHeader = document.querySelector(".page__header");
+const PAGE_HEADER = document.querySelector(".page__header");
 
 // add an anchor to the section function
 function addAnchorToSection(counter) {
-  ul.insertAdjacentHTML(
+  UL.insertAdjacentHTML(
     "beforeend",
     `<li>
         <a href="#section${counter}" class="menu__link">section ${counter}</a>
@@ -43,6 +43,7 @@ function createSection() {
         vitae elit. Integer nec libero venenatis libero ultricies molestie
         semper in tellus. Sed congue et odio sed euismod.
       </p>
+      
       <p>
         Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar
         gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam.
@@ -74,22 +75,22 @@ window.addEventListener("scroll", () => {
   clearTimeout(timer);
 
   // show the navBar onscroll
-  pageHeader.style.transform = "scaleY(1)";
+  PAGE_HEADER.style.transform = "scaleY(1)";
   preScroll = window.scrollY;
 
   // hide the navBar after 1s if no scrolling is happening
-  timer = setTimeout(() => (pageHeader.style.transform = "scaleY(0)"), 1000);
+  timer = setTimeout(() => (PAGE_HEADER.style.transform = "scaleY(0)"), 1000);
 
   //  activate the section in viewport and activate its anchor
   sections.forEach((section) => {
     let top = section.getBoundingClientRect().top;
     if (top < 250 && top >= -250) {
-      section.classList.add("section__activated");
+      section.classList.add("your-active-class");
       document
         .querySelector(`[href = "#${section.id}"]`)
         .classList.add("active");
     } else {
-      section.classList.remove("section__activated");
+      section.classList.remove("your-active-class");
       document
         .querySelector(`[href = "#${section.id}"]`)
         .classList.remove("active");
@@ -98,19 +99,19 @@ window.addEventListener("scroll", () => {
 });
 
 // to-top button
-const toTopBtn = document.querySelector(".to__top__btn");
+const TO_TOP_BUTTON = document.querySelector(".to__top__btn");
 window.onscroll = () => {
   if (window.scrollY >= 700) {
     // show the button if scrolly is bigger than 700
-    toTopBtn.style.display = "block";
+    TO_TOP_BUTTON.style.display = "block";
   } else {
     // hide the button if scrolly is less than 700
-    toTopBtn.style.display = "none";
+    TO_TOP_BUTTON.style.display = "none";
   }
 };
 
 // Scroll to top function
-toTopBtn.onclick = function () {
+TO_TOP_BUTTON.onclick = function () {
   window.scrollTo({
     left: 0,
     top: 0,
