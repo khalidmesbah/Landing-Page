@@ -1,6 +1,6 @@
 // Define Global Variables
 const UL = document.getElementById("navbar__list");
-let sections = document.querySelectorAll("section");
+let sections = Array.from(document.getElementsByTagName("section"));
 const PAGE_HEADER = document.querySelector(".page__header");
 let preScroll = window.scrollY;
 let timer = "";
@@ -68,7 +68,7 @@ function createSection() {
   );
 
   // update the sections
-  sections = document.querySelectorAll("section");
+  sections = Array.from(document.getElementsByTagName("section"));
 
   /*
    add an anchor to the section in the navBar,
