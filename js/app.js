@@ -5,10 +5,13 @@ const PAGE_HEADER = document.querySelector(".page__header");
 let preScroll = window.scrollY;
 let timer = "";
 const TO_TOP_BUTTON = document.querySelector(".to__top__btn");
-let counter = 0;
+let counter;
 
-// add an anchor to the section function
-// the dynamic navigation functionality
+  /*
+   add an anchor to the section in the navBar,
+   add the dynamic navigation functionality,
+   generate a new navigation item.
+  */
 function addAnchorToSection(counter) {
   const LI = document.createElement("li");
   LI.classList.add("menu__link");
@@ -25,9 +28,9 @@ function addAnchorToSection(counter) {
 };
 
 // add anchors for the defined sections
-for (; counter < sections.length; counter++) {
-  addAnchorToSection(counter + 1);
-};
+for (counter in sections) {
+  addAnchorToSection(++counter);
+}
 
 // make the first anchor active for the first section
 document.querySelector("li").classList.add("active");
@@ -67,8 +70,11 @@ function createSection() {
   // update the sections
   sections = document.querySelectorAll("section");
 
-  // add an anchor to the section in the navBar
-  // the dynamic navigation functionality
+  /*
+   add an anchor to the section in the navBar,
+   add the dynamic navigation functionality,
+   generate a new navigation item.
+  */  
   addAnchorToSection(counter);
 };
 
