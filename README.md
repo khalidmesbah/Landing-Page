@@ -2,6 +2,10 @@
 
 ***
 
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+
+***
+
 ## ***Feutures***
 
 - The Navigation is built dynamically.
