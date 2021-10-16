@@ -7,11 +7,11 @@ let timer = "";
 const TO_TOP_BUTTON = document.querySelector(".to__top__btn");
 let counter;
 
-  /*
+/*
    add an anchor to the section in the navBar,
    add the dynamic navigation functionality,
    generate a new navigation item.
-  */
+*/
 function addAnchorToSection(counter) {
   const LI = document.createElement("li");
   LI.classList.add("menu__link");
