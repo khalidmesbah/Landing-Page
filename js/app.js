@@ -5,12 +5,11 @@ const PAGE_HEADER = document.querySelector(".page__header");
 
 // add an anchor to the section function
 function addAnchorToSection(counter) {
-  UL.insertAdjacentHTML(
-    "beforeend",
-    `<li>
-        <a href="#section${counter}" class="menu__link">section ${counter}</a>
-    </li>`
-  );
+  const LI = document.createElement("li");
+  LI.innerHTML = `
+  <a href="#section${counter}" class="menu__link">section ${counter}</a>
+  `;
+  UL.appendChild(LI);
 };
 
 // add anchors for the defined sections
