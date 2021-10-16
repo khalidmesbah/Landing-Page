@@ -1,4 +1,5 @@
 # ***Manipulating the DOM exercise.***
+a landing page project which is a part of the Udacity's Front End Web Development Professional Nanodegree Program provided for free by FWD scholarship.
 
 ***
 
