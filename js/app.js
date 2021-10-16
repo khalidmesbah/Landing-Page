@@ -11,18 +11,18 @@ function addAnchorToSection(counter) {
         <a href="#section${counter}" class="menu__link">section ${counter}</a>
     </li>`
   );
-}
+};
 
-// add anchor for the defined sections
+// add anchors for the defined sections
 for (let i = 1; i <= sections.length; i++) {
   addAnchorToSection(i);
-}
+};
 
 // make the first anchor active for the first section
 document.querySelector("li a").classList.add("active");
 
 // create section function
-counter = 4;
+let counter = 4;
 function createSection() {
   // add a new section
   document.querySelector("main .container").insertAdjacentHTML(
@@ -59,7 +59,7 @@ function createSection() {
 
   // add an anchor to the section in the navBar
   addAnchorToSection(counter);
-}
+};
 
 // add a new section button
 document
@@ -117,4 +117,4 @@ TO_TOP_BUTTON.onclick = function () {
     top: 0,
     behavior: "smooth",
   });
-};
+}
