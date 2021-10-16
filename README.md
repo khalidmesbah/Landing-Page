@@ -35,3 +35,6 @@ https://khalidmesbah.github.io/FWD-Landing-Page/
 - JS Version: ES2015/ES6.
 - JS Standard: ESlint.
 - Dependencies: None.
+
+<strong>bold</strong>
+bold
