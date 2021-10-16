@@ -2,26 +2,37 @@
 const UL = document.getElementById("navbar__list");
 let sections = document.querySelectorAll("section");
 const PAGE_HEADER = document.querySelector(".page__header");
+let preScroll = window.scrollY;
+let timer = "";
+const TO_TOP_BUTTON = document.querySelector(".to__top__btn");
+let counter = 0;
 
 // add an anchor to the section function
+// the dynamic navigation functionality
 function addAnchorToSection(counter) {
   const LI = document.createElement("li");
-  LI.innerHTML = `
-  <a href="#section${counter}" class="menu__link">section ${counter}</a>
-  `;
+  LI.classList.add("menu__link");
+  LI.setAttribute("data-scroll", `#section${counter}`);
+  LI.textContent = `section ${counter}`;
+  // add the smooth scroll functionality to the anchor  
+  LI.addEventListener("click", () =>
+    window.scrollTo({
+      top: sections[counter - 1].offsetTop - 100,
+      behavior: "smooth",
+    })
+  );
   UL.appendChild(LI);
 };
 
 // add anchors for the defined sections
-for (let i = 1; i <= sections.length; i++) {
-  addAnchorToSection(i);
+for (; counter < sections.length; counter++) {
+  addAnchorToSection(counter + 1);
 };
 
 // make the first anchor active for the first section
-document.querySelector("li a").classList.add("active");
+document.querySelector("li").classList.add("active");
 
 // create section function
-let counter = 4;
 function createSection() {
   // add a new section
   document.querySelector("main .container").insertAdjacentHTML(
@@ -57,18 +68,14 @@ function createSection() {
   sections = document.querySelectorAll("section");
 
   // add an anchor to the section in the navBar
+  // the dynamic navigation functionality
   addAnchorToSection(counter);
 };
 
 // add a new section button
-document
-  .querySelector(".add__section__btn")
-  .addEventListener("click", () => createSection());
+document.querySelector(".add__section__btn").onclick = () => createSection();
 
-// hide the navbar whlie not scrolling & while scrolling down
-let preScroll = window.scrollY,
-  timer = "";
-
+// hide the navbar whlie not scrolling
 window.addEventListener("scroll", () => {
   // stop the timer
   clearTimeout(timer);
@@ -84,36 +91,27 @@ window.addEventListener("scroll", () => {
   sections.forEach((section) => {
     let top = section.getBoundingClientRect().top;
     if (top < 250 && top >= -250) {
-      section.classList.add("your-active-class");
+      section.classList.add("section__activated");
       document
-        .querySelector(`[href = "#${section.id}"]`)
+        .querySelector(`[data-scroll = "#${section.id}"]`)
         .classList.add("active");
     } else {
-      section.classList.remove("your-active-class");
+      section.classList.remove("section__activated");
       document
-        .querySelector(`[href = "#${section.id}"]`)
+        .querySelector(`[data-scroll = "#${section.id}"]`)
         .classList.remove("active");
     }
   });
 });
 
 // to-top button
-const TO_TOP_BUTTON = document.querySelector(".to__top__btn");
 window.onscroll = () => {
-  if (window.scrollY >= 700) {
-    // show the button if scrolly is bigger than 700
-    TO_TOP_BUTTON.style.display = "block";
-  } else {
-    // hide the button if scrolly is less than 700
-    TO_TOP_BUTTON.style.display = "none";
-  }
+  window.scrollY >= 700
+    ? // show the button if scrolly is bigger than 700
+      (TO_TOP_BUTTON.style.display = "block")
+    : // hide the button if scrolly is less than 700
+      (TO_TOP_BUTTON.style.display = "none");
 };
 
 // Scroll to top function
-TO_TOP_BUTTON.onclick = function () {
-  window.scrollTo({
-    left: 0,
-    top: 0,
-    behavior: "smooth",
-  });
-}
+TO_TOP_BUTTON.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
