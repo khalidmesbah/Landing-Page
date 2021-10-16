@@ -1,9 +1,4 @@
 /* ---- Base Rules ---- */
-:root {
-  scroll-behavior: smooth;
-}
-
-
 body {
   background: linear-gradient(
       0deg,
@@ -91,7 +86,6 @@ main {
 section {
   position: relative;
   margin-bottom: 100px;
-  scroll-margin-top: 100px;
 }
 
 
@@ -251,7 +245,7 @@ section:nth-of-type(3n + 1) .landing__container::after {
 
 /* ---- Theme State Rules ---- */
 /* Section Active Styles */
-section.your-active-class {
+section.section__activated {
   background: #000;
   background: linear-gradient(0deg, #0002 0%, #0000 100%);
   border-radius: 10px;
@@ -259,13 +253,13 @@ section.your-active-class {
 }
 
 
-section.your-active-class .landing__container::before {
+section.section__activated .landing__container::before {
   opacity: 1;
   animation: rotate 4s linear infinite forwards;
 }
 
 
-section.your-active-class .landing__container::after {
+section.section__activated .landing__container::after {
   opacity: 1;
   animation: rotate 5s linear infinite forwards reverse;
 }
