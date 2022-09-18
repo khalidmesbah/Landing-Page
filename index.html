@@ -22,7 +22,12 @@
       <div class="container">
         <nav class="navbar__menu">
           <!-- Navigation starts as empty UL that will be populated with JS -->
-          <ul id="navbar__list"></ul>
+          <ul id="navbar__list">
+            <li><a href="#section1" class="menu__link">section 1</a></li>
+            <li><a href="#section2" class="menu__link">section 2</a></li>
+            <li><a href="#section3" class="menu__link">section 3</a></li>
+            <li><a href="#section4" class="menu__link">section 4</a></li>
+          </ul>
         </nav>
       </div>
     </header>
@@ -35,7 +40,7 @@
     a data attribute that will populate the li node.
     Adding more sections will automatically populate nav.
     The first section is set to active class by default -->
-        <section id="section1" data-nav="Section 1" class="section__activated">
+        <section id="section1" class="section__activated">
           <div class="landing__container">
             <h2>Section 1</h2>
             <p>
@@ -51,7 +56,7 @@
               faucibus vitae elit. Integer nec libero venenatis libero ultricies
               molestie semper in tellus. Sed congue et odio sed euismod.
             </p>
-            
+
             <p>
               Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar
               gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam.
@@ -61,7 +66,7 @@
             </p>
           </div>
         </section>
-        <section id="section2" data-nav="Section 2">
+        <section id="section2">
           <div class="landing__container">
             <h2>Section 2</h2>
             <p>
@@ -87,7 +92,7 @@
             </p>
           </div>
         </section>
-        <section id="section3" data-nav="Section 3">
+        <section id="section3">
           <div class="landing__container">
             <h2>Section 3</h2>
             <p>
@@ -113,7 +118,7 @@
             </p>
           </div>
         </section>
-        <section id="section4" data-nav="Section 4">
+        <section id="section4">
           <div class="landing__container">
             <h2>Section 4</h2>
             <p>

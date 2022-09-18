@@ -1,4 +1,8 @@
 /* ---- Base Rules ---- */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: linear-gradient(
       0deg,
@@ -11,12 +15,10 @@ body {
   color: #fff;
 }
 
-
 /* responsive and media queries */
 .container {
   margin: 0 auto;
 }
-
 
 /* Small */
 @media (min-width: 768px) {
@@ -25,14 +27,12 @@ body {
   }
 }
 
-
 /* Medium */
 @media (min-width: 992px) {
   .container {
     width: 970px;
   }
 }
-
 
 /* Large */
 @media (min-width: 1200px) {
@@ -41,14 +41,12 @@ body {
   }
 }
 
-
 /* Typeography General*/
 h1 {
   font-family: "Fira Sans", sans-serif;
   font-size: 3em;
   margin: 2em 1rem;
 }
-
 
 @media only screen and (min-width: 35em) {
   h1 {
@@ -57,7 +55,6 @@ h1 {
   }
 }
 
-
 h2 {
   border-bottom: 1px solid #cc1;
   font-family: "Oxygen", Sans-Serif;
@@ -65,29 +62,25 @@ h2 {
   color: #fff;
 }
 
-
 p {
   line-height: 1.6em;
   color: #eee;
 }
-
 
 /* ---- Layout Rules ---- */
 main {
   margin: 5vh 1em 5vh 1em;
 }
 
-
 .main-hero {
   padding-top: 3em;
 }
 
-
 section {
   position: relative;
   margin-bottom: 100px;
+  scroll-margin-top: 100px;
 }
-
 
 /* ---- Module Rules ---- */
 /* Navigation Styles*/
@@ -97,11 +90,9 @@ section {
   text-align: right;
 }
 
-
 .navbar__menu li {
   display: inline-block;
 }
-
 
 .navbar__menu .menu__link {
   display: inline-block;
@@ -112,20 +103,17 @@ section {
   cursor: pointer;
 }
 
-
 .navbar__menu .menu__link:hover {
   background: #333;
   color: #fff;
   transition: ease 0.3s all;
 }
 
-
 .navbar__menu .menu__link.active {
   background: #333;
   color: #fff;
   transition: ease 0.3s all;
 }
-
 
 /* Header Styles */
 .page__header {
@@ -137,8 +125,12 @@ section {
   overflow: hidden;
   transition: 100ms;
   transform-origin: center top;
+  transform: scaleY(1);
 }
 
+.page__header.hide {
+  transform: scaleY(0);
+}
 
 /* Footer Styles */
 .page__footer {
@@ -147,11 +139,9 @@ section {
   color: #fff;
 }
 
-
 .page__footer p {
   color: #fff;
 }
-
 
 /* ---- Theme Rules ---- */
 /* Landing Container Styles */
@@ -160,7 +150,6 @@ section {
   text-align: left;
 }
 
-
 @media only screen and (min-width: 35em) {
   .landing__container {
     max-width: 50em;
@@ -168,13 +157,11 @@ section {
   }
 }
 
-
 section:nth-of-type(even) .landing__container {
   margin-right: 0;
   margin-left: auto;
   text-align: right;
 }
-
 
 /* Background Circles */
 section:nth-of-type(odd) .landing__container::before {
@@ -187,7 +174,6 @@ section:nth-of-type(odd) .landing__container::before {
   opacity: 0;
   transition: ease 0.5s all;
 }
-
 
 section:nth-of-type(even) .landing__container::before {
   position: absolute;
@@ -206,7 +192,6 @@ section:nth-of-type(even) .landing__container::before {
   transition: ease 0.5s all;
 }
 
-
 section:nth-of-type(3n) .landing__container::after {
   position: absolute;
   content: "";
@@ -223,7 +208,6 @@ section:nth-of-type(3n) .landing__container::after {
   opacity: 0;
   transition: ease 0.5s all;
 }
-
 
 section:nth-of-type(3n + 1) .landing__container::after {
   position: absolute;
@@ -242,7 +226,6 @@ section:nth-of-type(3n + 1) .landing__container::after {
   transition: ease 0.5s all;
 }
 
-
 /* ---- Theme State Rules ---- */
 /* Section Active Styles */
 section.section__activated {
@@ -252,18 +235,15 @@ section.section__activated {
   box-shadow: #fff7 0px 2px 4px 0px, #fff9 0px 2px 16px 0px;
 }
 
-
 section.section__activated .landing__container::before {
   opacity: 1;
   animation: rotate 4s linear infinite forwards;
 }
 
-
 section.section__activated .landing__container::after {
   opacity: 1;
   animation: rotate 5s linear infinite forwards reverse;
 }
-
 
 /* Section Active Styles Keyframe Animations */
 @keyframes rotate {
@@ -274,7 +254,6 @@ section.section__activated .landing__container::after {
     transform: rotate(360deg) translate(-1em) rotate(-360deg);
   }
 }
-
 
 /* styling the to top button  */
 .to__top__btn {
@@ -293,15 +272,14 @@ section.section__activated .landing__container::after {
   cursor: pointer;
   background: #fff;
   color: #333;
+  display: none;
 }
-
 
 .to__top__btn:hover {
   background: #333;
   color: #fff;
   transition: ease 0.3s all;
 }
-
 
 /* styling the add section button */
 .add__section__btn {
@@ -321,7 +299,6 @@ section.section__activated .landing__container::after {
   background: #fff;
   color: #333;
 }
-
 
 .add__section__btn:hover {
   background: #333;
